@@ -11,16 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('log_entries', function (Blueprint $table) {
+        Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->ipAddress('ip');
+            $table->string('remote_host');
+            $table->string('remote_logname');
+            $table->string('remote_user');
             $table->timestamp('request_datetime');
             $table->string('request_method');
-            $table->string('resource');
+            $table->string('request_URI');
+            $table->string('request_protocol');
+            $table->integer('response_code');
+            $table->integer('bytes_sent');
             $table->string('referer');
             $table->string('user_agent');
-            $table->integer('response_code');
-            $table->timestamps();
         });
     }
 
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('log_entries');
+        Schema::dropIfExists('logs');
     }
 };
