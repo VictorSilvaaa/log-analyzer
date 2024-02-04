@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LogEntry extends Model
+class Log extends Model
 {
+    use HasFactory;
     protected $fillable = [
-        'ip',
+        'remote_host',
+        'remote_logname',
+        'remote_user',
         'request_datetime',
         'request_method',
-        'resource',
-        'referer',
-        'user_agent',
+        'request_URI',
+        'request_protocol',
         'response_code',
+        'bytes_sent',
+        'referer',
+        'user_agent'
     ];
-
-    public static function saveLogEntry($data)
-    {
-        return self::create($data);
-    }
 }
